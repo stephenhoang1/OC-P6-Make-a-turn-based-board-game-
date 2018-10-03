@@ -1,39 +1,38 @@
-//make an array 1-100
-var squares_array = []
-for (var x = 1; x <= 100; x++) {
-    squares_array.push(x)
+var obstacle = '<div class="obstacle"></div>'
+
+var map_col = 0;
+var map_row = 1;
+
+for(var i = 0; i < 81; i++) {
+  map_col++;
+
+  $("#map").append(`<div data-col="${map_col}" data-row="${map_row}"></div>`);
+
+  if(map_col === 9) {
+    map_col = 0;
+    map_row++;
+  }
 }
 
-//randomly choose a number
-function shuffle_arr(num) {
-    var x
+var gridSquares = $("#map>div").toArray();
 
-    for (i = squares_array.length - 1; i > 0; i--) {
-        random = Math.floor(Math.random() * (i + 1));
-        x = squares_array[i];
-        squares_array[i] = squares_array[random];
-        squares_array[random] = x;
-    }
+function genObstacle() {
+  var randomSquare = gridSquares[Math.floor(Math.random() * gridSquares.length)];
+  //$(`[data-row="${$(randomSquare).data("row") + 1}"]`)
+  $(randomSquare).html(obstacle)
+  console.log(randomSquare);
 
-    return squares_array.slice(0, num);
 }
 
-//set default mode of squares as 'empty'
-$('div.row').addClass('empty');
+$("#newGame").on("click", function() {
+  $("#map>div").empty();
 
-//assign positions of obstacles, weapons and players
-function assign_positions(num, x, y, z) {
-  var arr =  shuffle_arr(num)
+  for(var i = 0; i < 15; i++) {
+    genObstacle();
+  }
+})
 
- for (let n = 0; n < num; n++) {
-     $("#sq_" + arr[n]).css("background-color", "red");
-   if (n >= x) {
-     $("#sq_" + arr[n]).css("background-color", "blue");
-   }
-   if (n >= (x + y)) {
-     $("#sq_" + arr[n]).css("background-color", "yellow")
-   }
- }
-}
-
-//assign_positions(18, 12, 4, 2)
+// gridSquares.forEach(function(sq) {
+//   console.log("col:", $(sq).data("col"));
+//   console.log("row:", $(sq).data("row"));
+// })
