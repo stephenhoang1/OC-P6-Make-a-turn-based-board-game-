@@ -3,6 +3,7 @@ var obstacle = '<div class="obstacle"></div>'
 var map_col = 0;
 var map_row = 1;
 
+//generate grid
 for(var i = 0; i < 81; i++) {
   map_col++;
 
