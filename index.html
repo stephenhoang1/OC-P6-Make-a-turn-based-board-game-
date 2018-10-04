@@ -4,22 +4,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <title>Document</title>
 </head>
 <body>
   <button id="newGame">New Game</button>
+
   <div class="wrapper">
     <aside class="player-panel">
     </aside>
-    
+
+    <div class="card" style="width: 100%">
+      <h1>Claire</h1>
+      <img class="card-img-top" src="https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/13256018_10154192136804629_1085443202847437005_n.jpg?_nc_cat=110&oh=d33d80447b4233d4ae6ce22612fa2710&oe=5C5746FD" alt="Card image cap">
+      <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
     <main id="map"></main>
 
-    <aside class="player-panel"></aside>
+    <div class="card" style="width: 100%;">
+      <h1>Stephen</h1>
+      <progress id="health" value="80" max="100"></progress>
+      <img class="card-img-top" src="https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/542382_3996854597684_2072393439_n.jpg?_nc_cat=100&oh=44b20de88f83fffad113d07a9acbb187&oe=5C5A8F96" alt="Card image cap">
+      <div class="card-body">
+
+      <div class="battle_controls">
+        <i class="far fa-hand-rock">
+          <h3>Attack</h3>
+        </i>
+        <i class="fas fa-shield-alt">
+        <h3>Defend</h3>
+        </i>
+      </div>
+
+
+
+      </div>
+    </div>
+
+    <aside class="player-panel">
+
+
+
+      <!-- <div class="player_name">
+        <h1>Stephen</h1>
+      </div>
+      <div class="health_bar">
+        <progress id="health" value="80" max="100"></progress>
+      </div>
+      <div class="player_pic"><img src="https://c8.alamy.com/comp/HK4TYJ/portrait-passport-photograph-young-younger-photo-model-model-man-head-HK4TYJ.jpg" alt=""></div>
+      <div class="player_attack">attack</div>
+      <div class="player_defend">defend</div> -->
+    </aside>
   </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="script.js">
-
   </script>
 
 </body>

@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'hello';
+  src: url("styles/fonts/SSF4_ABUKET.ttf");
+}
+
+h1 {
+  font-family: 'hello';
+}
+
 body {
   text-align: center;
 }
@@ -5,13 +14,48 @@ body {
 .wrapper {
   display: flex;
   justify-content: center;
-  max-width: 1000px;
   margin: 100px auto;
 }
 
 .player-panel {
-  background-color: #000;
+  background-color: white;
   width: 200px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+progress {
+  height: 20px;
+  background-color: orange;
+  color: blue;
+}
+
+progress {
+  color: lightblue;
+}
+
+progress::-webkit-progress-value {
+  background: lightblue;
+}
+
+progress::-moz-progress-bar {
+  background: lightcolor;
+}
+
+progress::-webkit-progress-value {
+  background: yellow;
+}
+
+progress::-webkit-progress-bar {
+  background: red;
+}
+
+.player-panel > div {
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+  max-height: 25%;
 }
 
 #map {
@@ -38,4 +82,23 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 50px;
+}
+
+.card-img-top {
+  max-height: 150px;
+  object-fit: cover;
+}
+
+progress {
+  width: 100%;
+}
+.card {
+  text-align: center;
+}
+
+.far, .fas {
+  font-size: 100px;
+  display: block;
+  padding: 30px;
+
 }
