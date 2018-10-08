@@ -10,97 +10,66 @@
 </head>
 <body>
 
+<!-- title and options -->
   <h1 class="title">Kitchen Wars</h1>
-
   <div class="options">
     <a href="#" id="newGame" class="btn btn-lg btn-info">New Game</a>
     <a href="#" class="btn btn-info">Rules</a>
   </div>
 
-
+<!-- wrapper contains player panels and game grid -->
   <div class="wrapper">
-    <aside class="player-panel">
-    </aside>
 
-    <div class="card" style="width: 100%;">
-
+<!-- left player panel -->
+  <div class="card" style="width: 100%;">
     <div class="name">
       <h3>Chef Mathilde</h3>
-
     </div>
-
-
-
     <div class="card-body">
-
-    <img class="card-img-top" src="styles/img/chef_whitehat.jpg" alt="Card image cap">
-
-    <div class="healthbar">
-      <h4>Health</h4>
-      <progress id="health" value="80" max="100"></progress>
-    </div>
-
-      <div class="attack">
-        <h4>Attack</h4>
-        <a href="#" class="btn btn-primary"></a>
-      </div>
-
-      <div class="defend">
-        <h4>Defend</h4>
-        <a href="#" class="btn btn-primary"></a>
-      </div>
-
-
-      </div>
-    </div>
-
-    <main id="map"></main>
-
-    <div class="card" style="width: 100%;">
-
-    <div class="name">
-      <h3>Chef Jean</h3>
-
-    </div>
-
-    <div class="card-body">
-
-    <img class="card-img-top" src="styles/img/chef_blackhat.jpg" alt="Card image cap">
-
-    <div class="healthbar">
-      <h4>Health</h4>
-      <progress id="health" value="80" max="100"></progress>
-    </div>
-
-      <div class="attack">
-        <h4>Attack</h4>
-        <a href="#" class="btn btn-primary"></a>
-      </div>
-
-      <div class="defend">
-        <h4>Defend</h4>
-        <a href="#" class="btn btn-primary"></a>
-      </div>
-
-
-      </div>
-    </div>
-
-    <aside class="player-panel">
-
-
-
-      <!-- <div class="player_name">
-        <h1>Stephen</h1>
-      </div>
-      <div class="health_bar">
+      <img class="card-img-top" src="styles/img/chef_whitehat.jpg" alt="Card image cap">
+      <div class="healthbar">
+        <h4>Health</h4>
         <progress id="health" value="80" max="100"></progress>
       </div>
-      <div class="player_pic"><img src="https://c8.alamy.com/comp/HK4TYJ/portrait-passport-photograph-young-younger-photo-model-model-man-head-HK4TYJ.jpg" alt=""></div>
-      <div class="player_attack">attack</div>
-      <div class="player_defend">defend</div> -->
-    </aside>
+      <div class="attack">
+        <h4>Attack</h4>
+        <a href="#" class="btn btn-primary"></a>
+      </div>
+      <div class="defend">
+        <h4>Defend</h4>
+        <a href="#" class="btn btn-primary"></a>
+      </div>
+    </div>
   </div>
+
+  <!-- game grid -->
+    <main id="map"></main>
+
+<!-- right player panel -->
+  <div class="card" style="width: 100%;">
+    <div class="name">
+      <h3>Chef Jean</h3>
+    </div>
+      <div class="card-body">
+      <img class="card-img-top" src="styles/img/chef_blackhat.jpg" alt="Card image cap">
+      <div class="healthbar">
+        <h4>Health</h4>
+        <progress id="health" value="80" max="100"></progress>
+      </div>
+      <div class="attack">
+        <h4>Attack</h4>
+        <a href="#" class="btn btn-primary"></a>
+      </div>
+
+      <div class="defend">
+        <h4>Defend</h4>
+        <a href="#" class="btn btn-primary"></a>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="script.js">
