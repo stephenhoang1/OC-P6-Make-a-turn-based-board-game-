@@ -1,10 +1,12 @@
 @font-face {
-  font-family: 'hello';
-  src: url("styles/fonts/SSF4_ABUKET.ttf");
+  font-family: 'pizza';
+  src: url("fonts/OrderPizza.ttf");
 }
 
-h1 {
-  font-family: 'hello';
+.title {
+  margin-top: 50px;
+  font-family: 'pizza';
+  text-align: center;
 }
 
 body {
@@ -14,7 +16,6 @@ body {
 .wrapper {
   display: flex;
   justify-content: center;
-  margin: 100px auto;
 }
 
 .player-panel {
@@ -85,8 +86,10 @@ progress::-webkit-progress-bar {
 }
 
 .card-img-top {
-  max-height: 150px;
+  height: 200px;
+  width: 100px;
   object-fit: cover;
+
 }
 
 progress {
@@ -96,9 +99,39 @@ progress {
   text-align: center;
 }
 
-.far, .fas {
-  font-size: 100px;
-  display: block;
-  padding: 30px;
+.card-body > div {
+  width: 100%;
+}
 
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.btn {
+  width: 80%;
+  height: 40px;
+}
+
+.name {
+  font-family: 'pizza';
+  margin-top: 30px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.options {
+  margin: 20px;
+  height: 100px;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.options > .btn {
+  width: 150px;
 }
