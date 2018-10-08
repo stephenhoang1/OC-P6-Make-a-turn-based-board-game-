@@ -9,39 +9,78 @@
   <title>Document</title>
 </head>
 <body>
-  <button id="newGame">New Game</button>
+
+  <h1 class="title">Kitchen Wars</h1>
+
+  <div class="options">
+    <a href="#" id="newGame" class="btn btn-lg btn-info">New Game</a>
+    <a href="#" class="btn btn-info">Rules</a>
+  </div>
+
 
   <div class="wrapper">
     <aside class="player-panel">
     </aside>
 
-    <div class="card" style="width: 100%">
-      <h1>Claire</h1>
-      <img class="card-img-top" src="https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/13256018_10154192136804629_1085443202847437005_n.jpg?_nc_cat=110&oh=d33d80447b4233d4ae6ce22612fa2710&oe=5C5746FD" alt="Card image cap">
-      <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="card" style="width: 100%;">
+
+    <div class="name">
+      <h3>Chef Mathilde</h3>
+
+    </div>
+
+
+
+    <div class="card-body">
+
+    <img class="card-img-top" src="styles/img/chef_whitehat.jpg" alt="Card image cap">
+
+    <div class="healthbar">
+      <h4>Health</h4>
+      <progress id="health" value="80" max="100"></progress>
+    </div>
+
+      <div class="attack">
+        <h4>Attack</h4>
+        <a href="#" class="btn btn-primary"></a>
+      </div>
+
+      <div class="defend">
+        <h4>Defend</h4>
+        <a href="#" class="btn btn-primary"></a>
+      </div>
+
+
       </div>
     </div>
 
     <main id="map"></main>
 
     <div class="card" style="width: 100%;">
-      <h1>Stephen</h1>
-      <progress id="health" value="80" max="100"></progress>
-      <img class="card-img-top" src="https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/542382_3996854597684_2072393439_n.jpg?_nc_cat=100&oh=44b20de88f83fffad113d07a9acbb187&oe=5C5A8F96" alt="Card image cap">
-      <div class="card-body">
 
-      <div class="battle_controls">
-        <i class="far fa-hand-rock">
-          <h3>Attack</h3>
-        </i>
-        <i class="fas fa-shield-alt">
-        <h3>Defend</h3>
-        </i>
+    <div class="name">
+      <h3>Chef Jean</h3>
+
+    </div>
+
+    <div class="card-body">
+
+    <img class="card-img-top" src="styles/img/chef_blackhat.jpg" alt="Card image cap">
+
+    <div class="healthbar">
+      <h4>Health</h4>
+      <progress id="health" value="80" max="100"></progress>
+    </div>
+
+      <div class="attack">
+        <h4>Attack</h4>
+        <a href="#" class="btn btn-primary"></a>
       </div>
 
+      <div class="defend">
+        <h4>Defend</h4>
+        <a href="#" class="btn btn-primary"></a>
+      </div>
 
 
       </div>

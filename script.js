@@ -33,6 +33,21 @@ $("#newGame").on("click", function() {
   }
 })
 
+//HEALTH
+let health = document.getElementById("health");
+
+$("#pain").on("click", function() {
+   health.value -= 10;
+ })
+
+
+   if (health.value == "0") {
+     $(".card-img-top").css("filter", "grayscale");
+   }
+
+
+
+
 // gridSquares.forEach(function(sq) {
 //   console.log("col:", $(sq).data("col"));
 //   console.log("row:", $(sq).data("row"));
