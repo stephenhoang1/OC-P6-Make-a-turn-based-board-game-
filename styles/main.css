@@ -1,68 +1,41 @@
+/* GLOBAL */
 @font-face {
   font-family: 'pizza';
   src: url("fonts/OrderPizza.ttf");
 }
+body {
+  text-align: center;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+}
 
+/* HEADER */
 .title {
   margin-top: 50px;
   font-family: 'pizza';
   text-align: center;
 }
-
-body {
-  text-align: center;
-}
-
-.wrapper {
-  display: flex;
-  justify-content: center;
-}
-
-.player-panel {
-  background-color: white;
-  width: 200px;
-  display: flex;
+.options {
+  margin: 20px;
+  height: 100px;
+  display:flex;
   flex-direction: column;
-
+  justify-content: space-around;
+  align-items: center;
+}
+.options > .btn {
+  width: 150px;
 }
 
-progress {
-  height: 20px;
-  background-color: orange;
-  color: blue;
-}
-
-progress {
-  color: lightblue;
-}
-
-progress::-webkit-progress-value {
-  background: lightblue;
-}
-
-progress::-moz-progress-bar {
-  background: lightcolor;
-}
-
-progress::-webkit-progress-value {
-  background: yellow;
-}
-
-progress::-webkit-progress-bar {
-  background: red;
-}
-
-.player-panel > div {
-  display: flex;
-  justify-content: center;
-  border: 1px solid black;
-  max-height: 25%;
-}
-
+/* GRID */
+/* this is used to create the grid */
 #map {
   display: grid;
   grid-template-columns: repeat(9, 1fr);
-  margin-bottom: 20px;
+  margin-bottom: 60px;
   max-width: 650px;
   grid-column-gap: 1px;
   grid-row-gap: 1px;
@@ -77,7 +50,6 @@ progress::-webkit-progress-bar {
   justify-content: center;
   align-items: center;
 }
-
 .obstacle {
   background-color: red;
   width: 40px;
@@ -85,24 +57,61 @@ progress::-webkit-progress-bar {
   border-radius: 50px;
 }
 
+.weapon {
+  background-color: black;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+}
+
+.player {
+  background-color: yellow;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+}
+/* PLAYER PANELS */
+.player-panel {
+  background-color: white;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.player-panel > div {
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+  max-height: 25%;
+}
+
+/* healthbar */
+progress {
+  height: 20px;
+  background-color: orange;
+  color: blue;
+  width: 100%;
+}
+progress::-webkit-progress-value {
+  background: yellow;
+}
+progress::-webkit-progress-bar {
+  background: red;
+}
+
+/* card */
 .card-img-top {
   height: 200px;
   width: 100px;
   object-fit: cover;
 
 }
-
-progress {
-  width: 100%;
-}
 .card {
   text-align: center;
 }
-
 .card-body > div {
   width: 100%;
 }
-
 .card-body {
   display: flex;
   flex-direction: column;
@@ -118,20 +127,7 @@ progress {
 .name {
   font-family: 'pizza';
   margin-top: 30px;
-  width: 70%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
-}
-
-.options {
-  margin: 20px;
-  height: 100px;
-  display:flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.options > .btn {
-  width: 150px;
 }

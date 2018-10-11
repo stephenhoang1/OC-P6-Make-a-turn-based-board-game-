@@ -10,97 +10,78 @@
 </head>
 <body>
 
+<!-- title and options -->
   <h1 class="title">Kitchen Wars</h1>
-
   <div class="options">
-    <a href="#" id="newGame" class="btn btn-lg btn-info">New Game</a>
-    <a href="#" class="btn btn-info">Rules</a>
+    <button id="newGame" class="btn btn-lg btn-info">New Game</button>
+    <button id="gameRules" class="btn btn-info">Rules</button>
   </div>
 
-
+<!-- wrapper contains player panels and game grid -->
   <div class="wrapper">
-    <aside class="player-panel">
-    </aside>
 
-    <div class="card" style="width: 100%;">
-
+<!-- left player panel -->
+  <div class="card" style="width: 100%;">
     <div class="name">
       <h3>Chef Mathilde</h3>
-
     </div>
-
-
-
     <div class="card-body">
-
-    <img class="card-img-top" src="styles/img/chef_whitehat.jpg" alt="Card image cap">
-
-    <div class="healthbar">
-      <h4>Health</h4>
-      <progress id="health" value="80" max="100"></progress>
-    </div>
-
-      <div class="attack">
-        <h4>Attack</h4>
-        <a href="#" class="btn btn-primary"></a>
+      <img class="card-img-top" src="styles/img/chef_whitehat.jpg" alt="Card image cap">
+      <div class="healthbar">
+        <h4>Health</h4>
+        <progress id="health1" value="0" max="100"></progress>
       </div>
-
+      <div class="attack">
+        <img src="styles/img/dough-roller.png" class="img-fluid mt-3" alt="">
+        <h4>Attack</h4>
+        <p class="bg-primary text-white py-2" id="damage1">0</p>
+      </div>
       <div class="defend">
         <h4>Defend</h4>
-        <a href="#" class="btn btn-primary"></a>
-      </div>
-
-
+        <p class="bg-primary text-white py-2" id="shield1">down</p>
       </div>
     </div>
+  </div>
 
+  <!-- game grid -->
     <main id="map"></main>
 
-    <div class="card" style="width: 100%;">
-
+<!-- right player panel -->
+  <div class="card" style="width: 100%;">
     <div class="name">
       <h3>Chef Jean</h3>
-
     </div>
-
     <div class="card-body">
-
-    <img class="card-img-top" src="styles/img/chef_blackhat.jpg" alt="Card image cap">
-
-    <div class="healthbar">
-      <h4>Health</h4>
-      <progress id="health" value="80" max="100"></progress>
-    </div>
-
-      <div class="attack">
-        <h4>Attack</h4>
-        <a href="#" class="btn btn-primary"></a>
+      <img class="card-img-top" src="styles/img/chef_blackhat.jpg" alt="Card image cap">
+      <div class="healthbar">
+        <h4>Health</h4>
+        <progress id="health2" value="0" max="100"></progress>
       </div>
-
+      <div class="attack">
+        <img src="styles/img/dough-roller.png" class="img-fluid mt-3" alt="">
+        <h4>Attack</h4>
+        <p class="bg-primary" id="damage2">0</p>
+      </div>
       <div class="defend">
         <h4>Defend</h4>
-        <a href="#" class="btn btn-primary"></a>
-      </div>
-
-
+        <p class="bg-primary" id="shield2">down</p>
       </div>
     </div>
-
-    <aside class="player-panel">
-
-
-
-      <!-- <div class="player_name">
-        <h1>Stephen</h1>
-      </div>
-      <div class="health_bar">
-        <progress id="health" value="80" max="100"></progress>
-      </div>
-      <div class="player_pic"><img src="https://c8.alamy.com/comp/HK4TYJ/portrait-passport-photograph-young-younger-photo-model-model-man-head-HK4TYJ.jpg" alt=""></div>
-      <div class="player_attack">attack</div>
-      <div class="player_defend">defend</div> -->
-    </aside>
   </div>
+
+  </div>
+
+  <div id="rulesModal" style="display: none;">
+    <h2>Game Rules</h2>
+    <ul>
+      <li>Rule 1</li>
+      <li>Role 2</li>
+      <li>Role 3</li>
+      <li>Rule 4</li>
+      <li>Rule 5</li>
+    </ul>
+  </div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="script.js">
