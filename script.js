@@ -1,3 +1,34 @@
+const Player1 = {
+  name: "Chef Mathilde",
+  avatar: "styles/img/chef_whitehat.jpg",
+  health: 100,
+  weapon: {
+      image: '<img src="" alt="" class="weapon" id="default">',
+      damage: 10,
+      oldWeapon: ""
+  },
+  shield: false,
+  position: {
+    col: 0,
+    row: 0
+  }
+};
+const Player2 = {
+  name: "Chef Jean",
+  avatar: "styles/img/chef_blackhat.jpg",
+  health: 100,
+  weapon: {
+      image: '<img src="" alt="" class="weapon" id="default">',
+      damage: 10,
+      oldWeapon: ""
+  },
+  shield: false,
+  position: {
+    col: 0,
+    row: 0
+  }
+};
+
 // create variables for columns and rows
 var map_col = 0;
 var map_row = 1;
@@ -29,15 +60,35 @@ for(var i = 0; i < 81; i++) {
 // also for randomly selecting squares, to generate players, obstacles and weapons from.
 var gridSquares = $("#map>div").toArray();
 
+function isCellOccupied(cell) {
+  if(cell.innerHTML === '<div class="player"></div>'||
+     cell.innerHTML === '<div class="weapon"></div>' ||
+     cell.innerHTML === '<div class="obstacle"></div>')
+  {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 // ***  OBSTACLE ***
 // create an obstacle
 var obstacle = '<div class="obstacle"></div>'
 // function to generate obstacle
 function genObstacle() {
-  // choose an element at random from the gridSquares array
-  var randomSquare = gridSquares[Math.floor(Math.random() * gridSquares.length)];
-  //add an obstacle HTML class to that randomSquare.
-  $(randomSquare).html(obstacle)
+
+  var selectedNumber = Math.floor(Math.random() * gridSquares.length);
+  var randomSquare = gridSquares[selectedNumber];
+
+  while (isCellOccupied(randomSquare)) {
+     selectedNumber = Math.floor(Math.random() * gridSquares.length);
+     randomSquare = gridSquares[selectedNumber];
+  }
+    $(randomSquare).html(obstacle);
+
+  // add a full class
+   // $('.obstacle').addClass('full');
+
 }
 
 // ***  WEAPONS ***
@@ -45,7 +96,11 @@ var weapon = '<div class="weapon"></div>'
 function genWeapon() {
   // choose an element at random from the gridSquares array
   var randomSquare = gridSquares[Math.floor(Math.random() * gridSquares.length)];
-  //add an obstacle HTML class to that randomSquare.
+
+  while (isCellOccupied(randomSquare)) {
+     selectedNumber = Math.floor(Math.random() * gridSquares.length);
+     randomSquare = gridSquares[selectedNumber];
+  }
   $(randomSquare).html(weapon)
 }
 
@@ -54,28 +109,49 @@ var player = '<div class="player"></div>'
 function genPlayer() {
   // choose an element at random from the gridSquares array
   var randomSquare = gridSquares[Math.floor(Math.random() * gridSquares.length)];
-  //add an obstacle HTML class to that randomSquare.
+
+  while (isCellOccupied(randomSquare)) {
+     selectedNumber = Math.floor(Math.random() * gridSquares.length);
+     randomSquare = gridSquares[selectedNumber];
+  }
+
   $(randomSquare).html(player)
+  // add a full class
+  // $('.player').addClass('full');
+
 }
 
-// start a new game
-$("#newGame").on("click", function() {
-  $("#map>div").empty();
+$(function() {
+  // start a new game
+  $("#newGame").on("click", function() {
+    $("#map>div").empty();
 
-  // // Generate obstacles
-  // for(var i = 0; i < 12; i++) {
-  //   genObstacle();
-  // }
-  // // generate weapons
-  // for(var x = 0; x < 4; x++) {
-  //   genWeapon();
-  // }
-  // // generate players
-  // for(var x = 0; x < 2; x++) {
-  //   genPlayer();
-  // }
+  $('#health1').val(Player1.health)
+
+  $('#damage1').html(Player1.weapon.damage)
+
+    // Generate obstacles
+    for (var i = 0; i < 12; i++) {
+      genObstacle();
+    }
+
+    // generate weapons
+    for(var x = 0; x < 4; x++) {
+      genWeapon();
+    }
+
+    // generate players
+    for (var x = 0; x < 2; x++) {
+      genPlayer();
+    }
+
+  });
+
+  $('#gameRules').on('click', function() {
+    console.log('Rules btn clicked...')
+    $('#rulesModal').css('display', 'block')
+  });
 })
-
 
 
 //healthbar
@@ -88,8 +164,6 @@ $("#newGame").on("click", function() {
 //    if (health.value == "0") {
 //      $(".card-img-top").css("filter", "grayscale");
 //    }
-
-
 
 
 // gridSquares.forEach(function(sq) {
