@@ -49,10 +49,9 @@ body {
   align-items: center;
 }
 .obstacle {
-  background-color: red;
   width: 90%;
   height: 90%;
-  background-image: url("img/gas_cooker_obstacle.png");
+  background-image: url('img/gas_cooker_obstacle.png');
   background-size: cover;
 }
 
@@ -62,8 +61,22 @@ body {
   height: 100%;
 }
 
-.player {
-  background-color: yellow;
+.player1 {
+  background-color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+}
+
+.player2 {
+  background-color: black;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+}
+
+.test_player {
+  background-color: green;
   width: 40px;
   height: 40px;
   border-radius: 50px;

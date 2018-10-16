@@ -36,29 +36,45 @@ const Player2 = {
 const Weapons = {
   ladle: {
     name: "Ladle",
-    image: '<img src="styles/img/ladle.png" alt="Ladle" class="weapon" id="default">',
+    image: '<img src="styles/img/ladle.png" alt="Ladle" class="weapon" id="weaponLadle">',
     damage: 20
   },
   doughRoller: {
     name: "Dough Roller",
-    image: '<img src="styles/img/dough-roller.png" alt="Dough Roller" class="weapon" id="default">',
+    image: '<img src="styles/img/dough-roller.png" alt="Dough Roller" class="weapon" id="weaponDoughRoller">',
     damage: 40
   },
   cookingPot: {
     name: "Cooking Pot",
-    image: '<img src="styles/img/cooking-pot.png" alt="Cooking Pot" class="weapon" id="default">',
+    image: '<img src="styles/img/cooking-pot.png" alt="Cooking Pot" class="weapon" id="weaponCookingPot">',
     damage: 60
   },
   meatCleaver: {
     name: "Meat Cleaver",
-    image: '<img src="styles/img/meat-cleaver.png" alt="Meat Cleaver" class="weapon" id="default">',
+    image: '<img src="styles/img/meat-cleaver.png" alt="Meat Cleaver" class="weapon" id="weaponMeatCleaver">',
     damage: 80
   },
 }
-
 // ***  OBSTACLE ***
 const Obstacle = {
   image: '<img src="styles/img/gas_cooker_obstacle.png" alt="obstacle" class="obstacle">'
+}
+// ***  PLAYER MOVEMENT ***
+const playerMovement = {
+  north: {},
+  south: {},
+  east: {},
+  west: {},
+  showMovesPlayer1: {},
+  showMovesPlayer2: {},
+  movePlayer: function() {}
+}
+// ***  GAME TURNS ***
+const gameTurn = {
+  detectTurn: {},
+  detechBattle: {},
+  shieldStatus: {},
+  changeTurn: {}
 }
 
 // ***  GENERATE GRID ***
@@ -93,17 +109,33 @@ const Obstacle = {
 var gridSquares = $("#map>div").toArray();
 
 
+//XY system
+// north - data-row - 1
+// south - data-row + 1
+// east  - data-col + 1
+// west  - data-col - 1
+
+//Array system:
+// north - currentIndex - 9
+// south - currentIndex + 9
+// east  - currentIndex + 1
+// west  - currentIndex - 1
+
 // ***  CHECK IF CELL IS OCCUPIED ***
 function isCellOccupied(cell) {
-  if(cell.innerHTML === '<div class="player"></div>'||
-     cell.innerHTML === '<div class="weapon"></div>' ||
-     cell.innerHTML === '<div class="obstacle"></div>') //***REPLACE WITH CORRECT ELEMENT LATER ON***
+  if(cell.innerHTML === '<div class="obstacle"></div>' ||
+     $(cell).hasClass("weapon")   ||
+     $(cell).hasClass("player1")  ||
+     $(cell).hasClass("player2")   )
   {
     return true;
   } else {
     return false;
   }
 }
+// cell.innerHTML === '<div class="obstacle"></div>'
+// cell.innerHTML === '<div class="weapon"></div>' ||
+// cell.innerHTML === '<div class="player"></div>'
 
 // ***  GENERATE OBSTACLE ***
 var obstacle = '<div class="obstacle"></div>'
@@ -118,10 +150,11 @@ function genObstacle() {
   }
     $(randomSquare).html(obstacle);
 
+    console.log(randomSquare)
+
 }
 
 // ***  GENERATE WEAPONS ***
-var weapon = '<div class="weapon"></div>'
 function genWeapon() {
 
   var selectedNumber = Math.floor(Math.random() * gridSquares.length);
@@ -129,7 +162,7 @@ function genWeapon() {
 
   var weaponsArray = Object.values(Weapons)
 
-  for (var x = 0; x < weaponsArray.length + 1; x++) {
+  for (var x = 0; x < weaponsArray.length; x++) {
 
   while (isCellOccupied(randomSquare)) {
     selectedNumber = Math.floor(Math.random() * gridSquares.length);
@@ -139,15 +172,14 @@ function genWeapon() {
   selectedNumber = Math.floor(Math.random() * gridSquares.length);
   randomSquare = gridSquares[selectedNumber];
 
-  $(randomSquare).html(weaponsArray[x].image)
-  console.log(weaponsArray[x].image)
+  $(randomSquare).html('<div class="weapon">' + weaponsArray[x].image + '</div>')
+
   }
 }
 
-
-// ***  GENERATE PLAYERS ***
-var player = '<div class="player"></div>'
-function genPlayer() {
+// ***  GENERATE PLAYER 1 ***
+var player1 = '<div class="player1"></div>'
+function genPlayer1() {
   // choose an element at random from the gridSquares array
   var randomSquare = gridSquares[Math.floor(Math.random() * gridSquares.length)];
 
@@ -156,47 +188,61 @@ function genPlayer() {
      randomSquare = gridSquares[selectedNumber];
   }
 
-  $(randomSquare).html(player)
-  // add a full class
-  // $('.player').addClass('full');
+  selectedNumber = Math.floor(Math.random() * gridSquares.length);
+  randomSquare = gridSquares[selectedNumber];
 
+  $(randomSquare).html(player1)
+  Player1.position.col = randomSquare.dataset.col
+  Player1.position.row = randomSquare.dataset.row
+}
+
+// ***  GENERATE PLAYER 2 ***
+var player2 = '<div class="player2"></div>'
+function genPlayer2() {
+  // choose an element at random from the gridSquares array
+  var randomSquare = gridSquares[Math.floor(Math.random() * gridSquares.length)];
+
+  while (isCellOccupied(randomSquare)) {
+     selectedNumber = Math.floor(Math.random() * gridSquares.length);
+     randomSquare = gridSquares[selectedNumber];
+  }
+
+  selectedNumber = Math.floor(Math.random() * gridSquares.length);
+  randomSquare = gridSquares[selectedNumber];
+
+  $(randomSquare).html(player2)
+  Player2.position.col = randomSquare.dataset.col
+  Player2.position.row = randomSquare.dataset.row
 }
 
 
 // ******************************************************
 
-
-
 // ***  START A NEW GAME ***
 $(function() {
   // start a new game
   $("#newGame").on("click", function() {
-    $("#map>div").empty();
 
+  $("#map>div").empty();
   $('#health1').val(Player1.health)
-
   $('#damage1').html(Player1.weapon.damage)
 
+
     // Generate obstacles
-    for (var i = 0; i < 12; i++) {
+    for (var i = 0; i < 81; i++) {
       genObstacle();
+          // genWeapon();
+
     }
+
+    // genPlayer1()
+    // genPlayer2()
 
     // generate weapons
 
-    genWeapon();
-
-
-
     // generate players
-    for (var x = 0; x < 2; x++) {
-      genPlayer();
-    }
+
 
   });
 
-  $('#gameRules').on('click', function() {
-    console.log('Rules btn clicked...')
-    $('#rulesModal').css('display', 'block')
   });
-})
