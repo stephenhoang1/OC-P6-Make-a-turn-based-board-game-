@@ -146,3 +146,11 @@ progress::-webkit-progress-bar {
 #gameRules {
   display: none;
 }
+
+.activePlayer {
+  border: 2px solid red !important;
+}
+
+.highlight {
+  background-color: red !important;
+}
