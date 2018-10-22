@@ -1,4 +1,4 @@
-// ***  PLAYER 1 ***
+// ***  PLAYER 1 ***z
 const Player1 = {
   // instead of identifying by name, use an ID to make it easier
   id: 1,
@@ -19,7 +19,8 @@ const Player1 = {
   position: {
     col: 0,
     row: 0
-  }
+  },
+  class_css: "<div class='player1'></div>"
 };
 // ***  PLAYER 2 ***
 const Player2 = {
@@ -66,7 +67,23 @@ const Weapons = [
 const Obstacle = {
   image: '<img src="styles/img/gas_cooker_obstacle.png" alt="obstacle" class="obstacle">'
 }
-// ***  PLAYER MOVEMENT ***
+//
+
+const directions = [
+  { col:  0, row: -1  }, // [0] --> up
+  { col:  0, row:  1  }, // [1] --> down
+  { col:  1, row:  0  }, // [2] --> left
+  { col: -1, row:  0  }  // [3] --> right
+];
+
+console.log(Player1.class_css)
+
+
+// XY system
+// UP Y - data-row - 1
+// DOWN Y - data-row + 1
+// LEFT  X - data-col + 1
+// RIGHT  X - data-col - 1
 
 const playerMovement = {
   north: function(player) {
@@ -78,22 +95,26 @@ const playerMovement = {
     // player's position - 1 in the row (3 gridSquares north)
     var north_3 = Number(player.position.row) - 3;
 
- // if [north_1's row and  player's col] does NOT have a class of 'full',
- // add a class called 'highlight' to that position.
-    if(!$(`[data-row="${north_1}"][data-col="${player.position.col}"]`).hasClass('full')) {
-      $(`[data-row="${north_1}"][data-col="${player.position.col}"]`).addClass('highlight')
+   // if [north_1's row and  player's col] does NOT have a class of 'full',
+   // add a class called 'highlight' to that position.
+    if(!$(`[data-col="${player.position.col}"][data-row="${north_1}"]`).hasClass('full')) {
+        $(`[data-col="${player.position.col}"][data-row="${north_1}"]`).addClass('highlight')
     }
 
     // if [north_2's row and  player's col] does NOT have a class of 'full',
+    // and if north sq_1 doesnt have a class called full,
     // add a class called 'highlight' to that position.
-    if(!$(`[data-row="${north_2}"][data-col="${player.position.col}"]`).hasClass('full')) {
-      $(`[data-row="${north_2}"][data-col="${player.position.col}"]`).addClass('highlight')
+    if(!$(`[data-col="${player.position.col}"][data-row="${north_2}"]`).hasClass('full')
+    && !$(`[data-col="${player.position.col}"][data-row="${north_1}"]`).hasClass('full')) {
+        $(`[data-col="${player.position.col}"][data-row="${north_2}"]`).addClass('highlight')
     }
 
     // if [north_3's row and  player's col] does NOT have a class of 'full',
     // add a class called 'highlight' to that position.
-    if(!$(`[data-row="${north_3}"][data-col="${player.position.col}"]`).hasClass('full')) {
-      $(`[data-row="${north_3}"][data-col="${player.position.col}"]`).addClass('highlight')
+    if(!$(`[data-col="${player.position.col}"][data-row="${north_3}"]`).hasClass('full')
+    && !$(`[data-col="${player.position.col}"][data-row="${north_2}"]`).hasClass('full')
+    && !$(`[data-col="${player.position.col}"][data-row="${north_1}"]`).hasClass('full')) {
+        $(`[data-col="${player.position.col}"][data-row="${north_3}"]`).addClass('highlight')
     }
 
   },
@@ -102,16 +123,19 @@ const playerMovement = {
     var south_2 = Number(player.position.row) + 2;
     var south_3 = Number(player.position.row) + 3;
 
-    if(!$(`[data-row="${south_1}"][data-col="${player.position.col}"]`).hasClass('full')) {
-      $(`[data-row="${south_1}"][data-col="${player.position.col}"]`).addClass('highlight')
+    if(!$(`[data-col="${player.position.col}"][data-row="${south_1}"]`).hasClass('full')) {
+        $(`[data-col="${player.position.col}"][data-row="${south_1}"]`).addClass('highlight')
     }
 
-    if(!$(`[data-row="${south_2}"][data-col="${player.position.col}"]`).hasClass('full')) {
-      $(`[data-row="${south_2}"][data-col="${player.position.col}"]`).addClass('highlight')
+    if(!$(`[data-col="${player.position.col}"][data-row="${south_2}"]`).hasClass('full')
+    && !$(`[data-col="${player.position.col}"][data-row="${south_1}"]`).hasClass('full')) {
+        $(`[data-col="${player.position.col}"][data-row="${south_2}"]`).addClass('highlight')
     }
 
-    if(!$(`[data-row="${south_3}"][data-col="${player.position.col}"]`).hasClass('full')) {
-      $(`[data-row="${south_3}"][data-col="${player.position.col}"]`).addClass('highlight')
+    if(!$(`[data-col="${player.position.col}"][data-row="${south_3}"]`).hasClass('full')
+    && !$(`[data-col="${player.position.col}"][data-row="${south_2}"]`).hasClass('full')
+    && !$(`[data-col="${player.position.col}"][data-row="${south_1}"]`).hasClass('full')) {
+        $(`[data-col="${player.position.col}"][data-row="${south_3}"]`).addClass('highlight')
     }
   },
   east: function(player) {
@@ -120,34 +144,42 @@ const playerMovement = {
     var east_3 = Number(player.position.col) + 3;
 
     if(!$(`[data-col="${east_1}"][data-row="${player.position.row}"]`).hasClass('full')) {
-      $(`[data-col="${east_1}"][data-row="${player.position.row}"]`).addClass('highlight')
+        $(`[data-col="${east_1}"][data-row="${player.position.row}"]`).addClass('highlight')
     }
 
-    if(!$(`[data-col="${east_2}"][data-row="${player.position.row}"]`).hasClass('full')) {
-      $(`[data-col="${east_2}"][data-row="${player.position.row}"]`).addClass('highlight')
+    if(!$(`[data-col="${east_2}"][data-row="${player.position.row}"]`).hasClass('full')
+    && !$(`[data-col="${east_1}"][data-row="${player.position.row}"]`).hasClass('full')) {
+        $(`[data-col="${east_2}"][data-row="${player.position.row}"]`).addClass('highlight')
     }
 
-    if(!$(`[data-col="${east_3}"][data-row="${player.position.row}"]`).hasClass('full')) {
-      $(`[data-col="${east_3}"][data-row="${player.position.row}"]`).addClass('highlight')
+    if(!$(`[data-col="${east_3}"][data-row="${player.position.row}"]`).hasClass('full')
+    && !$(`[data-col="${east_2}"][data-row="${player.position.row}"]`).hasClass('full')
+    && !$(`[data-col="${east_1}"][data-row="${player.position.row}"]`).hasClass('full')) {
+        $(`[data-col="${east_3}"][data-row="${player.position.row}"]`).addClass('highlight')
     }
   },
   west: function(player) {
+
     var west_1 = Number(player.position.col) - 1;
     var west_2 = Number(player.position.col) - 2;
     var west_3 = Number(player.position.col) - 3;
 
     if(!$(`[data-col="${west_1}"][data-row="${player.position.row}"]`).hasClass('full')) {
-      $(`[data-col="${west_1}"][data-row="${player.position.row}"]`).addClass('highlight')
+        $(`[data-col="${west_1}"][data-row="${player.position.row}"]`).addClass('highlight')
     }
 
-    if(!$(`[data-col="${west_2}"][data-row="${player.position.row}"]`).hasClass('full')) {
-      $(`[data-col="${west_2}"][data-row="${player.position.row}"]`).addClass('highlight')
+    if(!$(`[data-col="${west_2}"][data-row="${player.position.row}"]`).hasClass('full')
+    && !$(`[data-col="${west_1}"][data-row="${player.position.row}"]`).hasClass('full')) {
+        $(`[data-col="${west_2}"][data-row="${player.position.row}"]`).addClass('highlight')
     }
 
-    if(!$(`[data-col="${west_3}"][data-row="${player.position.row}"]`).hasClass('full')) {
-      $(`[data-col="${west_3}"][data-row="${player.position.row}"]`).addClass('highlight')
+    if(!$(`[data-col="${west_3}"][data-row="${player.position.row}"]`).hasClass('full')
+    && !$(`[data-col="${west_2}"][data-row="${player.position.row}"]`).hasClass('full')
+    && !$(`[data-col="${west_1}"][data-row="${player.position.row}"]`).hasClass('full')) {
+        $(`[data-col="${west_3}"][data-row="${player.position.row}"]`).addClass('highlight')
     }
   },
+
   // shows possible moves of players by highlighting them.
   // ...by calling the methods in the north, south, east, west instances.
   showMovesPlayer1: function(){
@@ -155,7 +187,6 @@ const playerMovement = {
     playerMovement.south(Player1);
     playerMovement.west(Player1);
     playerMovement.east(Player1);
-
   },
   showMovesPlayer2: function(){
     playerMovement.north(Player2);
@@ -163,7 +194,77 @@ const playerMovement = {
     playerMovement.west(Player2);
     playerMovement.east(Player2);
   },
-  movePlayer: function() {} //STILL TO COME
+
+   //   MOVE PLAYER
+  movePlayer: function(player) {
+
+    // directions and number of squares
+    var north_1 = Number(player.position.row) - 1;
+    var north_2 = Number(player.position.row) - 2;
+    var north_3 = Number(player.position.row) - 3;
+    var south_1 = Number(player.position.row) + 1;
+    var south_2 = Number(player.position.row) + 2;
+    var south_3 = Number(player.position.row) + 3;
+    var east_1 = Number(player.position.col) + 1;
+    var east_2 = Number(player.position.col) + 2;
+    var east_3 = Number(player.position.col) + 3;
+    var west_1 = Number(player.position.col) - 1;
+    var west_2 = Number(player.position.col) - 2;
+    var west_3 = Number(player.position.col) - 3;
+
+    // the actual position on the board
+    var click_north_1 = `[data-col="${player.position.col}"][data-row="${north_1}"]`
+    var click_north_2 = `[data-col="${player.position.col}"][data-row="${north_2}"]`
+    var click_north_3 = `[data-col="${player.position.col}"][data-row="${north_3}"]`
+    var click_south_1 = `[data-col="${player.position.col}"][data-row="${south_1}"]`
+    var click_south_2 = `[data-col="${player.position.col}"][data-row="${south_2}"]`
+    var click_south_3 = `[data-col="${player.position.col}"][data-row="${south_3}"]`
+    var click_east_1  = `[data-col="${east_1}"][data-row="${player.position.row}"]`
+    var click_east_2  = `[data-col="${east_2}"][data-row="${player.position.row}"]`
+    var click_east_3  = `[data-col="${east_3}"][data-row="${player.position.row}"]`
+    var click_west_1  = `[data-col="${west_1}"][data-row="${player.position.row}"]`
+    var click_west_2  = `[data-col="${west_2}"][data-row="${player.position.row}"]`
+    var click_west_3  = `[data-col="${west_3}"][data-row="${player.position.row}"]`
+
+    // make current position so you can remove the full class
+    var currentPosition = `[data-col="${player.position.col}"][data-row="${player.position.row}"]`
+
+    // function for moving, taking the position as an argument
+     function move(direction) {
+       $(direction).append($('.player1'))
+       $(direction).addClass('full');
+       $(currentPosition).removeClass('full')
+     }
+
+     // click functions for each square
+     $(click_north_1).click(function() {move(click_north_1)})
+     $(click_north_2).click(function() {move(click_north_2)})
+     $(click_north_3).click(function() {move(click_north_3)})
+     $(click_south_1).click(function() {move(click_south_1)})
+     $(click_south_2).click(function() {move(click_south_2)})
+     $(click_south_3).click(function() {move(click_south_3)})
+     $(click_east_1).click(function() {move(click_east_1)})
+     $(click_east_2).click(function() {move(click_east_2)})
+     $(click_east_3).click(function() {move(click_east_3)})
+     $(click_west_1).click(function() {move(click_west_1)})
+     $(click_west_2).click(function() {move(click_west_2)})
+     $(click_west_3).click(function() {move(click_west_3)})
+
+     // if you click on first north sq:
+//     $(click_north_1).click(function() {
+//     // add player 1 class to that sq
+//     $(this).append($('.player1'))
+//     // add full class to that sq
+//     $(this).addClass('full');
+//     // remove full class from the previous sq
+//     $(currentPosition).removeClass('full')
+//     // assign new square as the current position
+//     currentPosition = newSquare
+//     // update the position in the player1 object
+//     // you only have to update the row because thats the only thing being changed
+// });
+
+  }
 }
 // ***  GAME TURNS ***
 const gameTurn = {
@@ -224,11 +325,7 @@ const gameTurn = {
 // also for randomly selecting squares, to generate players, obstacles and weapons from.
 var gridSquares = $("#map>div").toArray();
 
-//XY system
-// north - data-row - 1
-// south - data-row + 1
-// east  - data-col + 1
-// west  - data-col - 1
+
 
 //Array system:
 // north - currentIndex - 9
@@ -293,8 +390,6 @@ function genPlayer1() {
   Player1.position.col = randomSquare.dataset.col
   Player1.position.row = randomSquare.dataset.row
 
-
-
 }
 
 // ***  GENERATE PLAYER 2 ***
@@ -308,17 +403,14 @@ function genPlayer2() {
      randomSquare = gridSquares[selectedNumber];
   }
 
-// var player1_X_axis = $('.player1')[0].parentNode.attributes[0].value
-// var player1_Y_axis = $('.player1')[0].parentNode.attributes[1].value
+var player1_X_axis = $('.player1')[0].parentNode.attributes[0]
+var player1_Y_axis = $('.player1')[0].parentNode.attributes[1]
+
 //
 // var random_X_axis = $(randomSquare)[0].attributes[0].value
 // var random_Y_axis = $(randomSquare)[0].attributes[1].value
 
-// XY system
-// UP Y - data-row - 1
-// DOWN Y - data-row + 1
-// LEFT  X - data-col + 1
-// RIGHT  X - data-col - 1
+
 
   $(randomSquare).addClass('full');
   $(randomSquare).html(player2)
@@ -333,18 +425,14 @@ function genPlayer2() {
 $(function() {
   // start a new game
   $("#newGame").on("click", function() {
-
   // empty the map before you populate it, to get rid of the previous session
   $("#map>div").empty();
-
   // assign the health of player 1 to the current health in the player1 object
   // (probably 100)
   $('#health1').val(Player1.health)
-
   // assign the health of player 1 to the default weapon in the player1 object
   // (probably 10)
   $('#damage1').html(Player1.weapon.damage)
-
     // Generate obstacles
     for (var i = 0; i < 12; i++) {
       genObstacle();
@@ -352,38 +440,13 @@ $(function() {
 
     genPlayer1()
     genPlayer2()
-
-
     genWeapon()
+
+    playerMovement.movePlayer(Player1)
+
 
 
     gameTurn.detectTurn()
-
   });
 
   });
-
-
-
-
-  //
-  // document.addEventListener("keydown", direction)
-  //
-  // function direction(event) {
-  //   if (event.keyCode === 37) {
-  //     d = "LEFT";
-  //       console.log(d)
-  //   }
-  //   else if (event.keyCode === 38) {
-  //     d = "UP";
-  //       console.log(d)
-  //   }
-  //   else if (event.keyCode === 39) {
-  //     d = "RIGHT";
-  //       console.log(d)
-  //   }
-  //   else if (event.keyCode === 40) {
-  //     d = "DOWN";
-  //       console.log(d)
-  //   }
-  // }

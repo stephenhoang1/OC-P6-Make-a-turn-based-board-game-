@@ -1,0 +1,30 @@
+function containsPlayer(row, col) {
+  const cellToCheck =  $(`*[data-col="${col}"][data-row="${row}"]`)[0];
+  if(cellToCheck) return cellToCheck.attributes[0].value === 'player';
+  return false;
+}
+
+function anythingNear(start) {
+  const vectors = [
+    { row:  1, col:  0 }, // down
+    { row: -1, col:  0 }, // up
+    { row:  0, col: -1 }, // left
+    { row:  0, col:  1 }  // right
+  ];
+
+  for(let i = 0; i < vectors.length; i++) {
+    let thisVector = vectors[i];
+    let hasPlayer = containsPlayer(thisVector.row + start.row, thisVector.col + start.col)
+    if(hasPlayer) {
+      return true;
+    }
+  }
+  return false;
+}
+
+console.log(
+anythingNear({
+  row: 3,
+  col: 1
+})
+)
