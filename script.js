@@ -76,14 +76,13 @@ const directions = [
   { col: -1, row:  0  }  // [3] --> right
 ];
 
-console.log(Player1.class_css)
-
-
 // XY system
 // UP Y - data-row - 1
 // DOWN Y - data-row + 1
 // LEFT  X - data-col + 1
 // RIGHT  X - data-col - 1
+
+var finishedMoving = false;
 
 const playerMovement = {
   north: function(player) {
@@ -99,23 +98,25 @@ const playerMovement = {
    // add a class called 'highlight' to that position.
     if(!$(`[data-col="${player.position.col}"][data-row="${north_1}"]`).hasClass('full')) {
         $(`[data-col="${player.position.col}"][data-row="${north_1}"]`).addClass('highlight')
+
+        if(!$(`[data-col="${player.position.col}"][data-row="${north_2}"]`).hasClass('full')) {
+            $(`[data-col="${player.position.col}"][data-row="${north_2}"]`).addClass('highlight')
+
+            if(!$(`[data-col="${player.position.col}"][data-row="${north_3}"]`).hasClass('full')) {
+                $(`[data-col="${player.position.col}"][data-row="${north_3}"]`).addClass('highlight')
+            }
+
+        }
     }
 
     // if [north_2's row and  player's col] does NOT have a class of 'full',
     // and if north sq_1 doesnt have a class called full,
     // add a class called 'highlight' to that position.
-    if(!$(`[data-col="${player.position.col}"][data-row="${north_2}"]`).hasClass('full')
-    && !$(`[data-col="${player.position.col}"][data-row="${north_1}"]`).hasClass('full')) {
-        $(`[data-col="${player.position.col}"][data-row="${north_2}"]`).addClass('highlight')
-    }
+
 
     // if [north_3's row and  player's col] does NOT have a class of 'full',
     // add a class called 'highlight' to that position.
-    if(!$(`[data-col="${player.position.col}"][data-row="${north_3}"]`).hasClass('full')
-    && !$(`[data-col="${player.position.col}"][data-row="${north_2}"]`).hasClass('full')
-    && !$(`[data-col="${player.position.col}"][data-row="${north_1}"]`).hasClass('full')) {
-        $(`[data-col="${player.position.col}"][data-row="${north_3}"]`).addClass('highlight')
-    }
+
 
   },
   south: function(player) {
@@ -125,18 +126,20 @@ const playerMovement = {
 
     if(!$(`[data-col="${player.position.col}"][data-row="${south_1}"]`).hasClass('full')) {
         $(`[data-col="${player.position.col}"][data-row="${south_1}"]`).addClass('highlight')
+
+        if(!$(`[data-col="${player.position.col}"][data-row="${south_2}"]`).hasClass('full')) {
+            $(`[data-col="${player.position.col}"][data-row="${south_2}"]`).addClass('highlight')
+
+            if(!$(`[data-col="${player.position.col}"][data-row="${south_3}"]`).hasClass('full')) {
+                $(`[data-col="${player.position.col}"][data-row="${south_3}"]`).addClass('highlight')
+            }
+        }
+
     }
 
-    if(!$(`[data-col="${player.position.col}"][data-row="${south_2}"]`).hasClass('full')
-    && !$(`[data-col="${player.position.col}"][data-row="${south_1}"]`).hasClass('full')) {
-        $(`[data-col="${player.position.col}"][data-row="${south_2}"]`).addClass('highlight')
-    }
 
-    if(!$(`[data-col="${player.position.col}"][data-row="${south_3}"]`).hasClass('full')
-    && !$(`[data-col="${player.position.col}"][data-row="${south_2}"]`).hasClass('full')
-    && !$(`[data-col="${player.position.col}"][data-row="${south_1}"]`).hasClass('full')) {
-        $(`[data-col="${player.position.col}"][data-row="${south_3}"]`).addClass('highlight')
-    }
+
+
   },
   east: function(player) {
     var east_1 = Number(player.position.col) + 1;
@@ -145,18 +148,18 @@ const playerMovement = {
 
     if(!$(`[data-col="${east_1}"][data-row="${player.position.row}"]`).hasClass('full')) {
         $(`[data-col="${east_1}"][data-row="${player.position.row}"]`).addClass('highlight')
+
+        if(!$(`[data-col="${east_2}"][data-row="${player.position.row}"]`).hasClass('full')) {
+            $(`[data-col="${east_2}"][data-row="${player.position.row}"]`).addClass('highlight')
+
+            if(!$(`[data-col="${east_3}"][data-row="${player.position.row}"]`).hasClass('full')) {
+                $(`[data-col="${east_3}"][data-row="${player.position.row}"]`).addClass('highlight')
+            }
+
+        }
+
     }
 
-    if(!$(`[data-col="${east_2}"][data-row="${player.position.row}"]`).hasClass('full')
-    && !$(`[data-col="${east_1}"][data-row="${player.position.row}"]`).hasClass('full')) {
-        $(`[data-col="${east_2}"][data-row="${player.position.row}"]`).addClass('highlight')
-    }
-
-    if(!$(`[data-col="${east_3}"][data-row="${player.position.row}"]`).hasClass('full')
-    && !$(`[data-col="${east_2}"][data-row="${player.position.row}"]`).hasClass('full')
-    && !$(`[data-col="${east_1}"][data-row="${player.position.row}"]`).hasClass('full')) {
-        $(`[data-col="${east_3}"][data-row="${player.position.row}"]`).addClass('highlight')
-    }
   },
   west: function(player) {
 
@@ -166,18 +169,21 @@ const playerMovement = {
 
     if(!$(`[data-col="${west_1}"][data-row="${player.position.row}"]`).hasClass('full')) {
         $(`[data-col="${west_1}"][data-row="${player.position.row}"]`).addClass('highlight')
+
+        if(!$(`[data-col="${west_2}"][data-row="${player.position.row}"]`).hasClass('full')) {
+            $(`[data-col="${west_2}"][data-row="${player.position.row}"]`).addClass('highlight')
+
+            if(!$(`[data-col="${west_3}"][data-row="${player.position.row}"]`).hasClass('full')) {
+                $(`[data-col="${west_3}"][data-row="${player.position.row}"]`).addClass('highlight')
+            }
+
+        }
+
     }
 
-    if(!$(`[data-col="${west_2}"][data-row="${player.position.row}"]`).hasClass('full')
-    && !$(`[data-col="${west_1}"][data-row="${player.position.row}"]`).hasClass('full')) {
-        $(`[data-col="${west_2}"][data-row="${player.position.row}"]`).addClass('highlight')
-    }
 
-    if(!$(`[data-col="${west_3}"][data-row="${player.position.row}"]`).hasClass('full')
-    && !$(`[data-col="${west_2}"][data-row="${player.position.row}"]`).hasClass('full')
-    && !$(`[data-col="${west_1}"][data-row="${player.position.row}"]`).hasClass('full')) {
-        $(`[data-col="${west_3}"][data-row="${player.position.row}"]`).addClass('highlight')
-    }
+
+
   },
 
   // shows possible moves of players by highlighting them.
@@ -197,6 +203,49 @@ const playerMovement = {
 
    //   MOVE PLAYER
   movePlayer: function(player) {
+
+    var _this = this.movePlayer;
+
+    //console.log('player',player)
+
+    //var _this = document.querySelector(`[data-col="${player.position.col}"][data-row="${player.position.row}"]`);
+    // UPDATE PLAYER POSITION OBJECT.
+
+    console.log(_this)
+
+    player.position.col = _this.dataset.col;
+    player.position.row = _this.dataset.row;
+
+    if($(_this).hasClass('highlight')) {
+      console.log('movePlayer')
+
+      // REMOVE OLD PLAYER IMAGE AND LEAVE OLD WEAPON
+      if(player.id === 1) {
+        $('.player1').parent().append(player.weapon.oldWeapon)
+
+        $('.player1').remove()
+      }else{
+        $('.player2').parent().append(player.weapon.oldWeapon)
+
+        $('.player2').remove()
+      }
+    }
+
+    $(_this).removeClass('full')
+
+    // PLACE PLAYER IMAGE IN NEW LOCATION AND UPDATE CLASS OF "FULL"
+    $(_this).prepend(`<div class="player${player.id}"></div>`);
+    $(_this).addClass('full')
+
+
+
+
+    // REMOVE HIGHTLIGHT CLASS, DISABLING "CLICK" LISTENER
+    $("#map>div").removeClass('highlight');
+    $("#map>div").off('click');
+
+    setTimeout(gameTurn.detectBattle, 500)
+    /*
 
     // directions and number of squares
     var north_1 = Number(player.position.row) - 1;
@@ -229,12 +278,52 @@ const playerMovement = {
     // make current position so you can remove the full class
     var currentPosition = `[data-col="${player.position.col}"][data-row="${player.position.row}"]`
 
+    // make an update object function and put it into the move function
+    function updatePlayerObject() {
+
+      if (currentPlayer === 1) {
+        $(".highlight").click(function() {
+          Player1.position.col = $(direction)[0].dataset.col
+          Player1.position.row = $(direction)[0].dataset.col
+        });
+      } else {
+        $(".highlight").click(function() {
+          Player2.position.col = $(direction)[0].dataset.col
+          Player2.position.row = $(direction)[0].dataset.col
+        });
+      }
+
+    }
+
     // function for moving, taking the position as an argument
      function move(direction) {
-       $(direction).append($('.player1'))
+       if (currentPlayer === 1) {
+         $(direction).append($('.player1'))
+         $(".highlight").click(function() {
+           Player1.position.col = $(direction)[0].dataset.col
+           Player1.position.row = $(direction)[0].dataset.col
+         });
+       }
+       else {
+         $(direction).append($('.player2'))
+         $(".highlight").click(function() {
+           Player2.position.col = $(direction)[0].dataset.col
+           Player2.position.row = $(direction)[0].dataset.col
+         });
+       }
+       // add player 1 to the chosen square
+       // add the class 'full' to the chosen square
        $(direction).addClass('full');
+       // remove the class 'full' from the original square
        $(currentPosition).removeClass('full')
-     }
+       // remove 'highlight' class from all squares
+
+       $(".highlight").removeClass()
+
+       finishedMoving = true
+};
+
+
 
      // click functions for each square
      $(click_north_1).click(function() {move(click_north_1)})
@@ -249,49 +338,58 @@ const playerMovement = {
      $(click_west_1).click(function() {move(click_west_1)})
      $(click_west_2).click(function() {move(click_west_2)})
      $(click_west_3).click(function() {move(click_west_3)})
-
-     // if you click on first north sq:
-//     $(click_north_1).click(function() {
-//     // add player 1 class to that sq
-//     $(this).append($('.player1'))
-//     // add full class to that sq
-//     $(this).addClass('full');
-//     // remove full class from the previous sq
-//     $(currentPosition).removeClass('full')
-//     // assign new square as the current position
-//     currentPosition = newSquare
-//     // update the position in the player1 object
-//     // you only have to update the row because thats the only thing being changed
-// });
+     */
 
   }
 }
+
+  // set Player1's Id to a variable called currentPlayer
+var currentPlayer = Player1.id;
 // ***  GAME TURNS ***
 const gameTurn = {
   // In the detectTurn object, create a function to check whose turn it is.
   detectTurn: function(){
-  // set Player1's Id to a variable called currentPlayer
-    var currentPlayer = Player1.id;
-
+    console.log('player moved.')
 // If the current player is player 1
     if(currentPlayer === 1) {
-    // add the 'activePlayer' class to the player 1 panel (#player1)
+      // remove activePlayer class from player 2.
+      $("#player2").removeClass('activePlayer')
+      // add the 'activePlayer' class to the player 1 panel (#player1)
       $("#player1").addClass('activePlayer');
-    // create a mouseenter event:
-    // when you enter '.player1' trigger playerMovement.showMovesPlayer1
-      $(".player1").mouseenter(playerMovement.showMovesPlayer1)
-      // or if it's player 2, do the same for that player.
-    }else{
+      // create a mouseenter event:
+      // when you enter '.player1' trigger playerMovement.showMovesPlayer1
+      $(".player1").parent().mouseenter(playerMovement.showMovesPlayer1)
+        // or if it's player 2, do the same for that player.
+
+    } else {
+      $("#player1").removeClass('activePlayer')
       $("#player2").addClass('activePlayer');
       $(".player2").mouseenter(playerMovement.showMovesPlayer2)
     }
 
-  },
-  detechBattle: {},
-  shieldStatus: {},
-  changeTurn: function(){
+    finishedMoving = false
 
+  },
+
+  changeTurn: function() {
+      console.log('turn Changed')
+      if(finishedMoving === true) {
+        if (currentPlayer === 1) {
+          currentPlayer = 2
+        } else {
+          currentPlayer = 1
+        }
+        setTimeout(gameTurn.detectTurn, 500)
+      }
+
+
+  },
+
+  detectBattle: function() {
+    console.log('detectBattle')
   }
+
+
 }
 
 // ***  GENERATE GRID ***
@@ -433,20 +531,46 @@ $(function() {
   // assign the health of player 1 to the default weapon in the player1 object
   // (probably 10)
   $('#damage1').html(Player1.weapon.damage)
-    // Generate obstacles
+    // Generate 12 obstacles
     for (var i = 0; i < 12; i++) {
       genObstacle();
     }
 
+// generate players to a random sq
     genPlayer1()
     genPlayer2()
+
+// generate weapons to a random square
     genWeapon()
 
+
+// assigns movement to both players when a highlighted square is clicked on.
+// SUGGESTION: MAYBE CALL THIS FUNCTION ONLY DURING THE PLAYERS TURN? ADD THE FUNCTION IN AN IF STATEMENT
     playerMovement.movePlayer(Player1)
+    playerMovement.movePlayer(Player2)
 
-
-
+// checks to see whose turn it is, adds a few classes. player 1 is assigned to current player
     gameTurn.detectTurn()
-  });
+
+// changes the current player.
+    gameTurn.changeTurn()
 
   });
+
+
+
+  });
+
+  $('#endTurn').on('click', function() {
+    if(finishedMoving === true) {
+    if (currentPlayer === 1) {
+      currentPlayer = 2
+      alert("player 2 ready")
+    }
+    else {
+      currentPlayer = 1
+      alert("player 1 ready")
+    }
+      gameTurn.detectTurn()
+    }
+  })
