@@ -9,7 +9,7 @@ body {
 .wrapper {
   display: flex;
   justify-content: center;
-  margin-bottom: 100px;
+  margin-bottom: 10px;
 }
 
 /* HEADER */
@@ -134,7 +134,7 @@ progress::-webkit-progress-bar {
   justify-content: space-around;
 }
 
-.btn {
+.btn, #endTurn {
   width: 80%;
   height: 40px;
 }
@@ -157,4 +157,9 @@ progress::-webkit-progress-bar {
 
 .highlight {
   background-color: red !important;
+}
+
+.wrap {
+  display: flex;
+  justify-content: center;
 }
