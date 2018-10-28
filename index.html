@@ -1,79 +1,88 @@
 <html>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">
   <title>Document</title>
 </head>
+
 <body>
 
-<!-- title and options -->
+  <!-- title and options -->
   <h1 class="title">Kitchen Wars</h1>
   <div class="options">
     <button id="newGame" class="btn btn-lg btn-info">New Game</button>
     <button id="gameRules" class="btn btn-info">Rules</button>
   </div>
 
-<!-- wrapper contains player panels and game grid -->
+  <!-- wrapper contains player panels and game grid -->
   <div class="wrapper">
 
-<!-- left player panel -->
-  <div id="player1" class="card" style="width: 100%;">
-    <div class="name">
-      <h3>Chef Mathilde</h3>
+    <!-- left player panel -->
+    <div id="player1" class="card" style="width: 100%;">
+      <div class="name">
+        <h3>Chef Mathilde</h3>
+      </div>
+      <div class="card-body">
+        <img class="card-img-top" src="styles/img/chef_whitehat.jpg" alt="Card image cap">
+        <div class="healthbar">
+          <h4>Health</h4>
+          <progress id="health1" value="0" max="100"></progress>
+        </div>
+        <div class="attack">
+          <img src="styles/img/dough-roller.png" class="img-fluid mt-3 w-50" alt="">
+          <h4>Attack</h4>
+          <p class="bg-primary text-white py-2" id="damage1">0</p>
+        </div>
+        <div class="defend">
+          <h4>Defend</h4>
+          <p class="bg-primary text-white py-2" id="shield1">down</p>
+        </div>
+      </div>
     </div>
-    <div class="card-body">
-      <img class="card-img-top" src="styles/img/chef_whitehat.jpg" alt="Card image cap">
-      <div class="healthbar">
-        <h4>Health</h4>
-        <progress id="health1" value="0" max="100"></progress>
-      </div>
-      <div class="attack">
-        <img src="styles/img/dough-roller.png" class="img-fluid mt-3 w-50" alt="">
-        <h4>Attack</h4>
-        <p class="bg-primary text-white py-2" id="damage1">0</p>
-      </div>
-      <div class="defend">
-        <h4>Defend</h4>
-        <p class="bg-primary text-white py-2" id="shield1">down</p>
-      </div>
-    </div>
-  </div>
 
-  <!-- game grid -->
+    <!-- game grid -->
     <main id="map"></main>
 
-<!-- right player panel -->
-  <div id="player2" class="card" style="width: 100%;">
-    <div class="name">
-      <h3>Chef Jean</h3>
+    <!-- right player panel -->
+    <div id="player2" class="card" style="width: 100%;">
+      <div class="name">
+        <h3>Chef Jean</h3>
+      </div>
+      <div class="card-body">
+        <img class="card-img-top" src="styles/img/chef_blackhat.jpg" alt="Card image cap">
+        <div class="healthbar">
+          <h4>Health</h4>
+          <progress id="health2" value="0" max="100"></progress>
+        </div>
+        <div class="attack">
+          <img src="styles/img/dough-roller.png" class="img-fluid mt-3 w-50" alt="">
+          <h4>Attack</h4>
+          <p class="bg-primary" id="damage2">0</p>
+        </div>
+        <div class="defend">
+          <h4>Defend</h4>
+          <p class="bg-primary" id="shield2">down</p>
+        </div>
+      </div>
     </div>
-    <div class="card-body">
-      <img class="card-img-top" src="styles/img/chef_blackhat.jpg" alt="Card image cap">
-      <div class="healthbar">
-        <h4>Health</h4>
-        <progress id="health2" value="0" max="100"></progress>
-      </div>
-      <div class="attack">
-        <img src="styles/img/dough-roller.png" class="img-fluid mt-3 w-50" alt="">
-        <h4>Attack</h4>
-        <p class="bg-primary" id="damage2">0</p>
-      </div>
-      <div class="defend">
-        <h4>Defend</h4>
-        <p class="bg-primary" id="shield2">down</p>
-      </div>
-    </div>
-  </div>
 
   </div>
 
-<div class="wrap">
-  <button id="endTurn">End Turn</button>
-</div>
+  <!-- SHIELD MODAL -->
+  <div id="shieldModal" style="display: none;">
+    <div id="shieldStyle">
+      <p>Change shield position?</p>
+      <span id="shieldUp" class="shieldButton">UP</span>
+      <span id="shieldDown" class="shieldButton">DOWN</span>
+    </div>
+  </div>
 
   <div id="rulesModal" style="display: none;">
     <h2>Game Rules</h2>
@@ -88,9 +97,10 @@
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="script.js">
   </script>
 
 </body>
+
 </html>
