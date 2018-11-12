@@ -6,19 +6,18 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-    crossorigin="anonymous">
+  crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-    crossorigin="anonymous">
+  crossorigin="anonymous">
   <title>Document</title>
 </head>
-
 <body>
 
   <!-- title and options -->
-  <h1 class="title">Kitchen Wars</h1>
+  <h1 class="header">Kitchen Wars</h1>
   <div class="options">
-    <button id="newGame" class="btn btn-lg btn-info">New Game</button>
-    <button id="gameRules" class="btn btn-info">Rules</button>
+    <button id="newGame" class="btn btn-info mx-2">New Game</button>
+    <button id="gameRules" class="btn btn-info mx-2">Rules</button>
   </div>
 
   <!-- wrapper contains player panels and game grid -->
@@ -26,23 +25,22 @@
 
     <!-- left player panel -->
     <div id="player1" class="card" style="width: 100%;">
-      <div class="name">
-        <h3>Chef Mathilde</h3>
+      <div class="playerName">
+        <h3>Mathilde</h3>
       </div>
       <div class="card-body">
-        <img class="card-img-top" src="styles/img/chef_whitehat.jpg" alt="Card image cap">
+        <img class="card-img-top p1_pic" src="styles/img/chef_whitehat.jpg" alt="Card image cap">
         <div class="healthbar">
           <h4>Health</h4>
           <progress id="health1" value="0" max="100"></progress>
         </div>
-        <div class="attack">
-          <img src="styles/img/dough-roller.png" class="img-fluid mt-3 w-50" alt="">
-          <h4>Attack</h4>
-          <p class="bg-primary text-white py-2" id="damage1">0</p>
+        <div class="Attack">
+          <img src="styles/img/knife-fork.png" class="img-fluid my-2 w-50" alt="">
+          <p id="damage1">0</p>
         </div>
         <div class="defend">
-          <h4>Defend</h4>
-          <p class="bg-primary text-white py-2" id="shield1">down</p>
+          <img src="styles/img/checked-shield.png" class="img-fluid my-3 w-50" alt="">
+          <p id="shield1">down</p>
         </div>
       </div>
     </div>
@@ -52,54 +50,71 @@
 
     <!-- right player panel -->
     <div id="player2" class="card" style="width: 100%;">
-      <div class="name">
-        <h3>Chef Jean</h3>
+      <div class="playerName">
+        <h3>Jean-Luc</h3>
       </div>
       <div class="card-body">
-        <img class="card-img-top" src="styles/img/chef_blackhat.jpg" alt="Card image cap">
+        <img class="card-img-top p2_pic" src="styles/img/chef_blackhat.jpg" alt="Card image cap">
         <div class="healthbar">
           <h4>Health</h4>
           <progress id="health2" value="0" max="100"></progress>
         </div>
-        <div class="attack">
-          <img src="styles/img/dough-roller.png" class="img-fluid mt-3 w-50" alt="">
-          <h4>Attack</h4>
-          <p class="bg-primary" id="damage2">0</p>
+        <div class="Attack">
+          <img src="styles/img/knife-fork.png" class="img-fluid my-2 w-50" alt="">
+          <p id="damage2">0</p>
         </div>
         <div class="defend">
-          <h4>Defend</h4>
-          <p class="bg-primary" id="shield2">down</p>
+          <img src="styles/img/checked-shield.png" class="img-fluid my-3 w-50" alt="">
+          <p id="shield2">down</p>
         </div>
       </div>
     </div>
 
-  </div>
 
-  <!-- SHIELD MODAL -->
-  <div id="shieldModal" style="display: none;">
-    <div id="shieldStyle">
-      <p>Change shield position?</p>
-      <span id="shieldUp" class="shieldButton">UP</span>
-      <span id="shieldDown" class="shieldButton">DOWN</span>
+    <!-- SHIELD MODAL -->
+    <div id="shieldModal" style="display: none;">
+      <div id="shieldStyle">
+        <p>Change shield position?</p>
+        <span id="shieldUp" class="shieldButton">UP</span>
+        <span id="shieldDown" class="shieldButton">DOWN</span>
+      </div>
+    </div>
+
+    <!-- RULES MODAL -->
+    <div id="rulesModal" style="display: none;">
+      <button id="closeRules">&times;</button>
+      <h2>Game Rules</h2>
+      <p>Tempers boil over between two cooks in this turn-based 2 player battle game!
+         Which one will emerge as the head chef?</p>
+      <h3>Movements</h3>
+      <ul>
+        <li>If your player panel is green, it's your turn.</li>
+        <li>Run your mouse curser over your player to see possible moves.</li>
+        <li>Click on a red highlighted square to move there.</li>
+      </ul>
+      <h3>Attack</h3>
+      <ul>
+        <li>Move to a square next to your opponent to attack them.</li>
+        <li>Once there, click on your opponent to hit them.</li>
+        <li>Can you find anything lying around that will do more damage than the cutlery you are currently holding?</li>
+      </ul>
+    </div>
+
+    <!-- BATTLE RESPONSE MODAL -->
+    <div id="battleResponseModal" style="display: none;">
     </div>
   </div>
 
-  <div id="rulesModal" style="display: none;">
-    <h2>Game Rules</h2>
-    <ul>
-      <li>Rule 1</li>
-      <li>Role 2</li>
-      <li>Role 3</li>
-      <li>Rule 4</li>
-      <li>Rule 5</li>
-    </ul>
+    <!-- GAME OVER MODAL -->
+  <div id="gameOverModal" style="display: none;">
   </div>
 
+</div>
 
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="script.js">
-  </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script src="script.js">
+</script>
 
 </body>
 
