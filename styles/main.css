@@ -200,7 +200,7 @@ progress::-webkit-progress-bar {
       top: 30%;
       background-color: white;
       padding: 50px;
-      width: 500px;
+      width: 600px;
       margin-left: -250;
       margin-top: -141;
       z-index: 99;
@@ -273,7 +273,7 @@ progress::-webkit-progress-bar {
 
   /* battle response */
 
-  #battleResponseModal, #gameOverModal {
+  #battleResponseModal, #gameOverModal, #battleStartModal {
     position: fixed;
     left: 50%;
     top: 50%;

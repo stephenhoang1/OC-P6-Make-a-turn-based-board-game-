@@ -458,6 +458,8 @@ const gameTurn = {
   },
 
   enterBattle: function() {
+
+    showBattleStartText()
     // 1. when the active player enters an adjacent square, the battle function is triggered. *T*
     // 2. the active player has the first chance to attack. *T*
     $('.player2').parent().data('clickedPreviously', false)
@@ -673,7 +675,6 @@ function genHealthPack() {
 // ***  GENERATE WEAPONS ***
 function genWeapon() {
 
-
   var weaponsArray = Weapons;
 
   // select a random square.
@@ -780,6 +781,12 @@ function newGame() {
     Player1.weapon = { ...Weapons[4] }
     Player2.weapon = { ...Weapons[4] }
 
+    // update player panels with weapon images
+    $('#player1>.card-body>.attack').children().attr(
+      'src', $(Player1.weapon.image)['0'].attributes['0'].value)
+    $('#player2>.card-body>.attack').children().attr(
+      'src', $(Player1.weapon.image)['0'].attributes['0'].value)
+
     // assign the health of player 1 to the default weapon in the player1 object
     // (probably 10)
     $("#damage1").html(Player1.weapon.damage);
@@ -831,11 +838,39 @@ $('#closeRules').on('click', function() {
 })
 
 // BATTLE RESPONSE MODAL
+function showBattleStartText() {
+  $('#battleStartModal').css('display', 'block')
+
+  if (currentPlayer === 1) {
+    $('#battleStartModal').html(
+      `<p>Mathilde, click on Jean-luc to attack!</p>`)
+  } else {
+    $('#battleStartModal').html(
+      `<p>Jean-Luc, click on Mathilde to attack!</p>`)
+  }
+
+  function fade_out() {
+    $("#battleStartModal").fadeOut().empty();
+  }
+  setTimeout(fade_out, 1000);
+
+}
+
+
+// BATTLE RESPONSE MODAL
 function showBattleResponseText() {
   $('#battleResponseModal').css('display', 'block')
-  $('#battleResponseModal').html(
-    `<p>You were hit, Player ${currentPlayer}! <br><br> Fight back by clicking your opponent
-    , or run away by clicking on a red square.</p>`)
+
+  if (currentPlayer === 1) {
+    $('#battleResponseModal').html(
+      `<p>You were hit, Mathile! <br><br> Fight back by clicking your opponent
+      , or run away by clicking on a red square.</p>`)
+  } else {
+    $('#battleResponseModal').html(
+      `<p>You were hit, Jean-Luc! <br><br> Fight back by clicking your opponent
+      , or run away by clicking on a red square.</p>`)
+  }
+
   $(document).click(function () {
     $('#battleResponseModal').css('display', 'none')
   })
@@ -846,13 +881,21 @@ function showBattleResponseText() {
 function showGameOver() {
   $('#gameOverModal').css('display', 'block')
 
-  $('#gameOverModal').html(
-    `<p>Player ${currentPlayer} is the winner!</p>
-     <br>
-     <div class="wrapper">
-     <button id="playAgain" class="btn btn-dark">Play again</button>
-     </div>`)
-
+  if (currentPlayer === 1) {
+    $('#gameOverModal').html(
+      `<p>Mathilde is the winner!</p>
+       <br>
+       <div class="wrapper">
+       <button id="playAgain" class="btn btn-dark">Play again</button>
+       </div>`)
+  } else {
+    $('#gameOverModal').html(
+      `<p>Jean-Luc is the winner!</p>
+       <br>
+       <div class="wrapper">
+       <button id="playAgain" class="btn btn-dark">Play again</button>
+       </div>`)
+  }
   $('#playAgain').on('click', function() {
     $('#newGame').click()
   })
